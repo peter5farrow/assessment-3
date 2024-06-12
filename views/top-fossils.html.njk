@@ -1,12 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Most Liked Fossils</title>
-  </head>
-  <body>
-    <h3>iktgvjgt</h3>
-  </body>
-</html>
+{% extends 'base.html.njk' %} {% block body %}
+
+<h1>Welcome, {{ name }}!</h1>
+
+{% for fossil, info in fossils %}
+
+<div class="fossil-div">
+  <h3>{{ name }}, this is {{ info.name }}.</h3>
+
+  <h2>Liked {{ info.num_likes }} times.</h2>
+
+  <img src="{{ info.img }}" />
+</div>
+{% endfor %}
+
+<form action="/like-fossil" method="POST">
+  Which fossil do you like the most?
+  <select name="fossilName">
+    <option value="aust">Australopithecus</option>
+    <option value="quetz">Quetzal</option>
+    <option value="steg">Stegosaurus</option>
+    <option value="trex">Tyrannosaurus Rex</option>
+  </select>
+
+  <input type="submit" />
+</form>
+
+{% endblock %}
